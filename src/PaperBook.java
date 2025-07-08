@@ -9,6 +9,9 @@ public class PaperBook extends Book{
 
     @Override
     public void buy(int quantity, String email, String address){
+        if(quantity <= 0) {
+            throw new IllegalArgumentException("Quantity must be greater than zero.");
+        }
         if(quantity <= stock && isForSale()) {
             stock -= quantity;
             ShippingService.send(address);

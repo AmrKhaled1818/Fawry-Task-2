@@ -56,7 +56,27 @@ public class Main {
         try {
             inventory.buyBook("ISBN124", 5, "reader@example.com", "");
         } catch (Exception e) {
-            System.out.println("Quantum book store: " + e.getMessage());
+            System.out.println(e.getMessage());
         }
+
+        // Buying with zero quantity
+        try {
+            inventory.buyBook("ISBN123", 0, "buyer@example.com", "123 Book St.");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        // Buying with negative quantity
+        try {
+            inventory.buyBook("ISBN123", -1, "buyer@example.com", "123 Book St.");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        // Removing books with a very high threshold
+        inventory.removeOutdatedBook(2025, 100);
+
+        // Removing books with a zero threshold
+        inventory.removeOutdatedBook(2025, 0);
     }
 }
